@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Jana Yasser — aspiring Full-Stack .NET Web Developer. Explore front-end projects, C# applications, education, and skills." />
+  <meta name="theme-color" content="#0b1220" />
+
+  <title>Jana Yasser</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #100b20;
+      --panel: #1b1432;
+      --panel-2: #251a43;
+      --text: #f7f2ff;
+      --muted: #b8accf;
+      --line: rgba(205, 180, 255, .18);
+      --teal: #b99aff;
+      --teal-dark: #3a245f;
+      --cream: #f0e7ff;
+      --max: 1120px;
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: "Manrope", sans-serif; line-height: 1.65; }
+    body::before {
+      content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+      background: radial-gradient(ellipse at 80% 0%, rgba(153, 91, 255, .20), transparent 38%),
+                  radial-gradient(ellipse at 5% 45%, rgba(103, 76, 210, .18), transparent 35%);
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea { font: inherit; }
+    .wrap { width: min(var(--max), calc(100% - 44px)); margin-inline: auto; }
+    .mono { font-family: "DM Mono", monospace; letter-spacing: .02em; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; color: var(--teal); font: 500 .78rem "DM Mono", monospace; text-transform: uppercase; letter-spacing: .14em; }
+    .eyebrow::before { content: ""; width: 22px; height: 1px; background: var(--teal); }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { line-height: 1.12; letter-spacing: -.045em; }
+    h1 { font-size: clamp(4.2rem, 10.8vw, 9.2rem); line-height: .88; max-width: 1000px; margin: 25px 0 22px; letter-spacing: -.085em; overflow-wrap: anywhere; }
+    h2 { font-size: clamp(2.1rem, 4vw, 3.5rem); margin: 15px 0 20px; }
+    h3 { font-size: 1.25rem; margin-bottom: 12px; letter-spacing: -.025em; }
+    p { color: var(--muted); }
+    .accent { color: var(--teal); }
+    .section { padding: 108px 0; border-top: 1px solid var(--line); }
+    .section-intro { max-width: 660px; margin-bottom: 42px; }
+    .section-intro p { font-size: 1.04rem; }
+    .nav { position: sticky; top: 0; z-index: 20; background: rgba(11,18,32,.82); backdrop-filter: blur(18px); border-bottom: 1px solid var(--line); }
+    .nav-inner { display: flex; justify-content: space-between; align-items: center; min-height: 76px; gap: 24px; }
+    .brand { font-weight: 800; letter-spacing: -.04em; display: inline-flex; align-items: center; gap: 10px; white-space: nowrap; }
+    .brand-mark { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 11px; background: var(--teal); color: var(--bg); font: 700 .95rem "DM Mono", monospace; }
+    .nav-links { display: flex; gap: 23px; align-items: center; }
+    .nav-links a { color: var(--muted); font-size: .83rem; transition: color .2s; }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--teal); }
+    .nav-cta { border: 1px solid rgba(185,154,255,.55); border-radius: 999px; padding: 10px 16px; color: var(--teal) !important; }
+    .menu-toggle { display: none; background: transparent; border: 1px solid var(--line); color: var(--text); border-radius: 10px; padding: 8px 11px; cursor: pointer; }
+    .hero { padding: 82px 0 84px; overflow: hidden; position: relative; }
+    .hero::after { content: ""; position: absolute; width: 480px; height: 480px; right: -180px; top: -150px; border-radius: 50%; border: 1px solid rgba(185,154,255,.12); box-shadow: 0 0 0 42px rgba(185,154,255,.025), 0 0 0 88px rgba(185,154,255,.018); pointer-events: none; }
+    .hero-grid { display: grid; grid-template-columns: 1.25fr .75fr; gap: 44px; align-items: center; }
+    .hero-profile { position: relative; width: min(100%, 360px); aspect-ratio: 4 / 5; margin-inline: auto; border-radius: 34px 34px 120px 34px; overflow: hidden; border: 1px solid rgba(205,180,255,.36); background: linear-gradient(145deg, #4b2d7c, #21133f 58%, #a17bff); box-shadow: 0 28px 85px rgba(93,48,160,.32); display: grid; place-items: center; }
+    .hero-profile::before { content: ""; position: absolute; inset: 15px; border: 1px solid rgba(255,255,255,.22); border-radius: 25px 25px 100px 25px; pointer-events: none; }
+    .profile-placeholder { text-align: center; position: relative; z-index: 1; padding: 24px; color: #f7f0ff; }
+    .profile-initials { display: grid; place-items: center; width: 132px; height: 132px; border-radius: 50%; margin: 0 auto 18px; border: 1px solid rgba(255,255,255,.48); background: linear-gradient(135deg,rgba(255,255,255,.24),rgba(255,255,255,.04)); font-size: 3rem; font-weight: 800; letter-spacing: -.08em; }
+    .profile-placeholder strong { display:block; font-size: 1rem; }
+    .profile-placeholder small { display:block; margin-top: 6px; color: #e0d0ff; font-size: .72rem; }
+    .profile-spark { position:absolute; color:#e9d8ff; font-size:2rem; }
+    .profile-spark.one { top:28px; right:32px; } .profile-spark.two { bottom:42px; left:27px; font-size:1.3rem; }
+    .hero-copy { position: relative; z-index: 1; }
+    .hero-copy > p { font-size: 1rem; max-width: 490px; margin-top: 22px; }
+    .hero-name { display: block; }
+    .hero-role { font-size: clamp(1.15rem, 2.5vw, 1.85rem); font-weight: 700; letter-spacing: -.04em; color: #d0baff; }
+    .hero-student { margin-top: 10px; color: var(--muted); font-size: .93rem; }
+    .hero-title-small { color: var(--muted); font-weight: 600; font-size: clamp(1rem, 2vw, 1.35rem); }
+    .actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 32px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; border-radius: 999px; padding: 13px 20px; font-weight: 800; font-size: .9rem; border: 1px solid transparent; cursor: pointer; transition: transform .2s, background .2s, border-color .2s; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--teal); color: #180e2b; }
+    .btn-secondary { border-color: var(--line); color: var(--text); background: rgba(255,255,255,.02); }
+    .hero-note { margin-top: 24px; font: .76rem "DM Mono", monospace; color: #8192aa; }
+    .hero-art { position: relative; min-height: 420px; display: grid; place-items: center; }
+    .orbit { position: absolute; width: 360px; height: 360px; border: 1px solid rgba(185,154,255,.17); border-radius: 50%; }
+    .orbit::before, .orbit::after { content: ""; position: absolute; border: 1px solid rgba(185,154,255,.13); border-radius: 50%; inset: 34px; }
+    .orbit::after { inset: 75px; }
+    .browser { position: relative; width: min(100%, 410px); border: 1px solid rgba(205,180,255,.28); border-radius: 18px; overflow: hidden; background: rgba(17,28,45,.94); box-shadow: 0 32px 90px rgba(0,0,0,.3); transform: rotate(2deg); }
+    .browser-top { height: 42px; display: flex; align-items: center; gap: 6px; padding: 0 14px; background: #2a1d48; border-bottom: 1px solid var(--line); }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: #708198; }
+    .address { margin-left: 12px; border-radius: 6px; background: rgba(255,255,255,.055); color: #8192aa; font: .63rem "DM Mono", monospace; padding: 5px 9px; flex: 1; }
+    .browser-body { padding: 24px; }
+    .mock-kicker { color: var(--teal); font: .65rem "DM Mono", monospace; }
+    .mock-heading { font-size: 1.6rem; font-weight: 800; letter-spacing: -.05em; margin: 10px 0 18px; }
+    .mock-line { height: 7px; border-radius: 99px; background: #3a2b5c; margin: 9px 0; }
+    .mock-line.short { width: 62%; }
+    .mock-line.mid { width: 82%; }
+    .mock-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 23px; }
+    .mock-card { min-height: 88px; border-radius: 12px; border: 1px solid var(--line); padding: 12px; background: rgba(255,255,255,.045); }
+    .mock-card .tiny { font: .58rem "DM Mono", monospace; color: #7d90a9; }
+    .mock-card strong { display: block; margin-top: 8px; font-size: .83rem; }
+    .mock-chip { display: inline-block; margin-top: 12px; padding: 5px 8px; border-radius: 6px; background: rgba(185,154,255,.12); color: var(--teal); font: .58rem "DM Mono", monospace; }
+    .float-tag { position: absolute; background: #24183d; border: 1px solid var(--line); padding: 11px 14px; border-radius: 12px; box-shadow: 0 14px 35px rgba(0,0,0,.22); color: var(--cream); font: .7rem "DM Mono", monospace; }
+    .tag-one { top: 32px; right: 0; transform: rotate(5deg); }
+    .tag-two { bottom: 42px; left: 0; transform: rotate(-5deg); }
+    .usp { padding: 18px 0 62px; background: transparent; }
+    .usp-inner { display: flex; justify-content: center; align-items: center; text-align: center; }
+    .usp-box { width: min(100%, 760px); position: relative; overflow: hidden; padding: 20px 24px; border: 1px solid rgba(185,154,255,.32); border-radius: 24px; background: linear-gradient(115deg, rgba(185,154,255,.105), rgba(154,105,255,.18) 58%, rgba(255,255,255,.045)); box-shadow: 0 18px 55px rgba(0,0,0,.13); }
+    .usp-box::before { content: "USP / 01"; position: absolute; top: 15px; left: 18px; color: rgba(185,154,255,.72); font: .65rem "DM Mono", monospace; letter-spacing: .12em; }
+    .usp h2 { margin: 8px 0 0; font-size: clamp(1.25rem, 2.5vw, 2rem); letter-spacing: -.045em; }
+    .about-grid { display: grid; grid-template-columns: 1fr; gap: 30px; align-items: start; }
+    .about-stamp { border: 1px solid var(--line); border-radius: var(--radius); padding: 25px; background: linear-gradient(145deg, rgba(185,154,255,.08), rgba(255,255,255,.015)); }
+    .stamp-top { display: flex; justify-content: space-between; align-items: center; color: var(--muted); font: .68rem "DM Mono", monospace; }
+    .stamp-symbol { margin: 34px 0 25px; width: 78px; height: 78px; display: grid; place-items: center; border-radius: 23px; background: var(--teal); color: var(--bg); font-size: 2rem; font-weight: 800; }
+    .stamp-caption { font-size: 1.3rem; color: var(--text); font-weight: 800; max-width: 210px; line-height: 1.3; }
+    .about-copy p { font-size: 1.03rem; }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 24px; }
+    .pill { border: 1px solid var(--line); border-radius: 999px; padding: 8px 12px; color: #c3cfdd; font-size: .78rem; }
+    .timeline { position: relative; margin-left: 8px; }
+    .timeline::before { content: ""; position: absolute; left: 7px; top: 9px; bottom: 10px; width: 1px; background: var(--line); }
+    .timeline-item { position: relative; padding: 0 0 34px 36px; }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-item::before { content: ""; position: absolute; left: 1px; top: 7px; width: 13px; height: 13px; border-radius: 50%; background: var(--bg); border: 2px solid var(--teal); }
+    .meta { display: flex; flex-wrap: wrap; gap: 10px 16px; color: var(--teal); font: .72rem "DM Mono", monospace; margin-bottom: 10px; }
+    .meta .muted { color: #7f91a9; }
+    .timeline-item p { margin-bottom: 0; }
+    .timeline-item ul { color: var(--muted); padding-left: 18px; margin-bottom: 0; }
+    .timeline-item li { padding: 3px 0; }
+    .education-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .edu-card, .skill-card, .service-card, .project-card { background: rgba(17,28,45,.72); border: 1px solid var(--line); border-radius: var(--radius); }
+    .edu-card { padding: 26px; }
+    .edu-card.wide { grid-column: 1 / -1; }
+    .card-label { color: var(--teal); font: .7rem "DM Mono", monospace; text-transform: uppercase; letter-spacing: .1em; }
+    .edu-card h3 { margin-top: 12px; }
+    .edu-card .date { color: #8395ad; font: .72rem "DM Mono", monospace; }
+    .edu-card p { margin-bottom: 0; }
+    .course-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .course-list span { font-size: .75rem; padding: 6px 9px; background: rgba(255,255,255,.045); border: 1px solid var(--line); border-radius: 8px; color: #c1cddd; }
+    .skill-group { margin-top: 28px; }
+    .skill-group-title { font-size: 1.35rem; margin: 0 0 16px; letter-spacing: -.03em; color: var(--text); }
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .skills-grid-soft { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .skill-card { padding: 23px; }
+    .skill-icon { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 12px; background: rgba(185,154,255,.1); color: var(--teal); font: .8rem "DM Mono", monospace; margin-bottom: 19px; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-tags span { color: #b7c5d7; background: rgba(255,255,255,.045); border: 1px solid var(--line); border-radius: 7px; padding: 6px 9px; font-size: .75rem; }
+    .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .service-card { padding: 27px; transition: border-color .2s, transform .2s; }
+    .service-card:hover { transform: translateY(-3px); border-color: rgba(185,154,255,.42); }
+    .service-number { color: var(--teal); font: .72rem "DM Mono", monospace; }
+    .service-card h3 { margin-top: 20px; }
+    .service-card ul { padding-left: 18px; color: var(--muted); margin-bottom: 0; }
+    .service-card li { margin: 5px 0; }
+    .scope-note { margin-top: 20px; padding: 17px 20px; border-left: 2px solid var(--teal); background: rgba(185,154,255,.055); border-radius: 0 12px 12px 0; color: var(--muted); font-size: .9rem; }
+    .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .project-card { overflow: hidden; transition: transform .2s, border-color .2s; }
+    .project-card:hover { transform: translateY(-4px); border-color: rgba(185,154,255,.42); }
+    .project-visual { height: 220px; position: relative; overflow: hidden; background: #101c2c; border-bottom: 1px solid var(--line); padding: 20px; }
+    .project-content { padding: 25px; }
+    .project-content p { font-size: .91rem; }
+    .project-top { display: flex; justify-content: space-between; gap: 14px; align-items: start; }
+    .project-index { color: #71839c; font: .72rem "DM Mono", monospace; }
+    .tech-row { display: flex; flex-wrap: wrap; gap: 7px; margin: 16px 0; }
+    .tech-row span { font: .67rem "DM Mono", monospace; color: var(--teal); background: rgba(185,154,255,.08); border: 1px solid rgba(185,154,255,.15); padding: 5px 8px; border-radius: 6px; }
+    .project-link { color: var(--teal); font-size: .82rem; font-weight: 800; }
+    .music-ui { width: 85%; max-width: 330px; margin: 4px auto; background: #18273b; border: 1px solid rgba(255,255,255,.1); border-radius: 15px; padding: 16px; box-shadow: 0 18px 40px rgba(0,0,0,.25); }
+    .music-album { width: 88px; height: 88px; margin: 0 auto 12px; border-radius: 13px; background: linear-gradient(135deg,#4e9f91,#1d3651 55%,#d4b17b); display: grid; place-items: center; font-size: 1.5rem; color: #fff; }
+    .music-name { text-align: center; font-weight: 800; font-size: .8rem; }
+    .music-sub { text-align: center; color: #879bb3; font-size: .6rem; }
+    .music-progress { height: 4px; border-radius: 8px; background: #453461; margin: 12px 0 8px; overflow: hidden; }
+    .music-progress::after { content: ""; display: block; width: 43%; height: 100%; background: var(--teal); }
+    .music-controls { display: flex; justify-content: center; align-items: center; gap: 19px; color: #c9d5e4; font-size: .9rem; }
+    .music-controls b { background: var(--teal); color: #0b1220; border-radius: 50%; width: 29px; height: 29px; display: grid; place-items: center; }
+    .console-window { width: 90%; max-width: 360px; margin: 15px auto; background: #120c22; border: 1px solid #463461; border-radius: 11px; overflow: hidden; font: .67rem "DM Mono", monospace; box-shadow: 0 18px 40px rgba(0,0,0,.22); }
+    .console-top { padding: 8px 11px; color: #879bb3; background: #19283b; border-bottom: 1px solid #463461; }
+    .console-text { padding: 13px; color: #c9b9e5; line-height: 1.8; }
+    .console-text .green { color: var(--teal); }
+    .console-text .gold { color: #f0c6ff; }
+    .crochet-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 9px; width: 90%; margin: 12px auto; transform: rotate(-2deg); }
+    .crochet-tile { height: 126px; border-radius: 11px; background: #cda991; display: grid; place-items: center; color: #5c3f36; font-size: 1.8rem; }
+    .crochet-tile:nth-child(2) { background: #d9c8a9; margin-top: 18px; }
+    .crochet-tile:nth-child(3) { background: #a7b8a1; }
+    .crochet-tile:nth-child(4) { background: #e5d9c6; margin-top: -18px; }
+    .crochet-tile:nth-child(5) { background: #b9a4bb; }
+    .crochet-tile:nth-child(6) { background: #d9b8a4; margin-top: -18px; }
+    .project-note { color: #8496ad; font-size: .75rem !important; margin-top: 12px; }
+    .contact-panel { display: grid; grid-template-columns: .9fr 1.1fr; gap: 55px; background: linear-gradient(145deg, rgba(185,154,255,.075), rgba(17,28,45,.7) 55%); border: 1px solid var(--line); border-radius: 28px; padding: clamp(25px, 5vw, 55px); }
+    .contact-panel h2 { font-size: clamp(2.3rem, 4vw, 3.8rem); }
+    .contact-list { display: grid; gap: 12px; margin-top: 26px; }
+    .contact-item { display: flex; align-items: center; gap: 12px; color: #d1dce9; font-size: .88rem; overflow-wrap: anywhere; }
+    .contact-icon { display: grid; place-items: center; flex: 0 0 36px; height: 36px; border-radius: 11px; border: 1px solid var(--line); color: var(--teal); font: .75rem "DM Mono", monospace; }
+    .contact-form { display: grid; gap: 13px; }
+    .field { display: grid; gap: 7px; }
+    .field label { color: #b5c4d6; font-size: .78rem; }
+    .field input, .field textarea { width: 100%; border: 1px solid var(--line); border-radius: 11px; padding: 13px 14px; background: rgba(6,13,24,.45); color: var(--text); outline: none; }
+    .field input:focus, .field textarea:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(185,154,255,.08); }
+    .field textarea { min-height: 115px; resize: vertical; }
+    .form-note { font-size: .73rem; color: #8192a8; margin: 0; }
+    footer { padding: 26px 0; border-top: 1px solid var(--line); color: #8292a8; font-size: .77rem; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+    .back-top { color: var(--teal); }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    /* Portfolio polish: photo frame, glow details, and richer interactions */
+    .hero { background: radial-gradient(ellipse at 70% 45%, rgba(124,84,255,.075), transparent 48%); }
+    .hero-profile { isolation: isolate; transform: rotate(1.5deg); transition: transform .45s ease, box-shadow .45s ease; }
+    .hero-profile:hover { transform: rotate(0deg) translateY(-5px); box-shadow: 0 34px 100px rgba(93,48,160,.45); }
+    .profile-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; z-index: 0; }
+    .hero-profile::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(18,8,39,.03) 45%, rgba(18,8,39,.82) 100%); pointer-events: none; }
+    .hero-profile::before { z-index: 2; }
+    .profile-spark { z-index: 3; text-shadow: 0 0 18px rgba(255,255,255,.6); }
+    .photo-caption { position: absolute; z-index: 3; left: 30px; right: 30px; bottom: 29px; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; color: #fff; font-size: .72rem; font-weight: 700; letter-spacing: .01em; }
+    .photo-caption span:last-child { color: #e0d0ff; font-weight: 500; }
+    .caption-divider { opacity: .55; }
+    .photo-status, .float-pulse { width: 7px; height: 7px; border-radius: 50%; background: #a9f6cb; box-shadow: 0 0 12px rgba(169,246,203,.8); display: inline-block; }
+    .photo-float { position: absolute; z-index: 4; right: -16px; top: 34px; padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(205,180,255,.25); background: rgba(26,17,49,.92); box-shadow: 0 15px 40px rgba(0,0,0,.28); color: #e8ddff; font-size: .62rem; letter-spacing: .08em; display: flex; align-items: center; gap: 9px; transform: rotate(3deg); }
+    .float-pulse { width: 6px; height: 6px; }
+    .btn-primary { box-shadow: 0 8px 26px rgba(185,154,255,.2); }
+    .btn-primary:hover { box-shadow: 0 12px 32px rgba(185,154,255,.32); }
+    .project-card, .edu-card, .skill-card, .service-card { backdrop-filter: blur(8px); }
+    .section-intro .eyebrow { margin-bottom: 4px; }
+    ::selection { background: rgba(185,154,255,.35); color: #fff; }
+    @media (max-width: 680px) {
+      .photo-float { right: -4px; top: 18px; font-size: .54rem; }
+      .photo-caption { left: 25px; right: 25px; bottom: 25px; }
+      .hero-profile { transform: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } .reveal { opacity: 1; transform: none; } }
+    @media (max-width: 900px) {
+      .nav-links { gap: 13px; }
+      .nav-links a { font-size: .76rem; }
+      .hero-grid { grid-template-columns: 1fr .65fr; gap: 24px; }
+      .hero-art { min-height: 300px; max-width: 320px; width: 100%; margin: 0 auto; }
+      h1 { font-size: clamp(3.5rem, 8vw, 6rem); }
+      .hero-profile { border-radius: 26px 26px 85px 26px; }
+      .about-grid { grid-template-columns: 1fr; gap: 30px; }
+      .skills-grid { grid-template-columns: repeat(2,1fr); }
+      .contact-panel { grid-template-columns: 1fr; gap: 35px; }
+    }
+    @media (max-width: 680px) {
+      .wrap { width: min(var(--max), calc(100% - 32px)); }
+      .nav-inner { min-height: 68px; }
+      .menu-toggle { display: inline-flex; }
+      .nav-links { display: none; position: absolute; top: 68px; left: 0; right: 0; padding: 18px 22px 22px; background: rgba(11,18,32,.98); border-bottom: 1px solid var(--line); flex-direction: column; align-items: stretch; gap: 16px; }
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: .9rem; padding: 4px 0; }
+      .nav-cta { text-align: center; }
+      .hero { padding: 66px 0 58px; }
+      h1 { font-size: clamp(4.1rem, 17vw, 7rem); }
+      .hero-copy > p { max-width: 360px; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-art { min-height: 290px; max-width: 270px; margin: 8px auto 0; }
+      .hero-profile { aspect-ratio: 4 / 4.4; }
+      .profile-initials { width: 105px; height: 105px; font-size: 2.5rem; }
+      .usp { padding-bottom: 48px; }
+      .usp-box { border-radius: 18px; padding: 17px 18px; }
+      .section { padding: 78px 0; }
+      .education-grid, .skills-grid, .services-grid, .projects-grid { grid-template-columns: 1fr; }
+      .edu-card.wide { grid-column: auto; }
+      .project-visual { height: 205px; }
+      .crochet-tile { height: 95px; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#home" aria-label="Jana Yasser home"><span class="brand-mark">JY</span> Jana Yasser</a>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks">Menu ☰</button>
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#about-me">About Me</a><a href="#education">Education</a><a href="#experience">Experience</a>
+        <a href="#courses">Courses & Certificates</a><a href="#skills">Skills</a><a href="#projects">Projects</a>
+        <a class="nav-cta" href="#contact">Contact ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div class="hero-copy reveal">
+          <span class="eyebrow">PORTFOLIO / 2026</span>
+          <h1 class="hero-name">Jana<br><span class="accent">Yasser</span></h1>
+          <div class="hero-role">Beginner Full-Stack .NET Developer</div>
+          <div class="hero-student">Business Information Systems Student <span class="accent">·</span> Expected graduation - 2027</div>
+          <p>Building practical web experiences, one project at a time.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#projects">View my work <span aria-hidden="true">↘</span></a>
+            <a class="btn btn-secondary" href="#contact">Let's work together <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="hero-note">CAIRO, EGYPT <span class="accent">·</span> LEARNING BY BUILDING</div>
+        </div>
+        <div class="hero-art reveal" aria-label="Jana Yasser portrait">
+          <div class="hero-profile">
+            <img class="profile-photo" src="jana-portrait.jpeg" alt="Portrait of Jana Yasser" />
+            <div class="photo-caption"><span class="photo-status"></span><span>Jana Yasser</span><span class="caption-divider">/</span><span>Developer in progress</span></div>
+            <span class="profile-spark one" aria-hidden="true">✦</span><span class="profile-spark two" aria-hidden="true">✧</span>
+          </div>
+          <div class="photo-float mono"><span class="float-pulse"></span> OPEN TO OPPORTUNITIES</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="usp" aria-label="Personal brand statement">
+      <div class="wrap usp-inner"><div class="usp-box"><h2>Where Business Meets <span class="accent">Code.</span></h2></div></div>
+    </section>
+
+    <section class="section" id="about-me">
+      <div class="wrap">
+        <div class="section-intro reveal"><span class="eyebrow">About me</span><h2>About <span class="accent">Me</span></h2></div>
+        <div class="about-copy reveal">
+          <p>I'm Jana, a Junior Full Stack Developer and Business Information Systems student. I became interested in software development through building small web projects, which eventually led me to explore backend development and C#.</p>
+          <p>I've built projects using HTML, CSS, JavaScript, C#, and PHP, ranging from interactive websites to console-based applications. I'm currently expanding my full-stack skills through hands-on learning in .NET, React, Angular, and modern web development.</p>
+          <p>What makes my background different is the combination of business and technology. Studying Business Information Systems has taught me to think not only about how software is built, but also about the people, processes, and problems it is built to solve.</p>
+          <p>I'm still early in my development journey, but I enjoy turning ideas into working software, learning through every project, and continuously improving the way I build.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="education">
+      <div class="wrap">
+        <div class="section-intro reveal"><span class="eyebrow">Learning journey</span><h2>Education & training</h2><p>A mix of business studies, structured technical training, and independent learning.</p></div>
+        <div class="education-grid">
+          <article class="edu-card reveal">
+            <div class="card-label">University education</div><h3>Business Administration</h3>
+            <div class="date">Capital University · 2023–2027 (expected)</div>
+            <p style="margin-top:14px">GPA: 3.78 / 4.0</p>
+            <div class="course-list"><span>Programming Fundamentals</span><span>Advanced Databases</span><span>Systems Analysis & Design</span><span>Management Information Systems</span><span>PHP</span></div>
+          </article>
+          <article class="edu-card reveal">
+            <div class="card-label">Professional training · In progress</div><h3>Full-Stack .NET Web Development</h3>
+            <div class="date">Digital Egypt Pioneers Initiative (DEPI) · Jul–Dec 2026</div>
+            <p style="margin-top:14px">Structured training in web application development, databases, testing, and development tools.</p>
+            <div class="course-list"><span>C#</span><span>ASP.NET Core MVC</span><span>.NET Web API</span><span>SQL Server</span><span>Docker</span><span>Git / GitHub</span></div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="wrap">
+        <div class="section-intro reveal"><span class="eyebrow">Where I've learned</span><h2>Experience</h2><p>Early experiences that helped me build practical foundations and work with others.</p></div>
+        <div class="timeline">
+          <article class="timeline-item reveal"><div class="meta"><span>JUL 2025 — AUG 2025</span><span class="muted">TRAINING</span></div><h3>Web Development Intern <span class="accent">/ ITI</span></h3><ul><li>Completed training in HTML, CSS, JavaScript, and Bootstrap.</li><li>Built a crochet website using HTML, CSS, and JavaScript.</li><li>Practiced front-end fundamentals through hands-on work.</li></ul></article>
+          <article class="timeline-item reveal"><div class="meta"><span>OCT 2025 — JAN 2026</span><span class="muted">TEAM EXPERIENCE</span></div><h3>Front-End Team Member <span class="accent">/ C2C Capital University</span></h3><ul><li>Participated in front-end team activities.</li><li>Continued learning and practicing HTML, CSS, JavaScript, and Bootstrap.</li></ul></article>
+          <article class="timeline-item reveal"><div class="meta"><span>JUL 2026 — DEC 2026</span><span class="muted">IN PROGRESS</span></div><h3>Full-Stack .NET Web Development Trainee <span class="accent">/ DEPI</span></h3><ul><li>Developing full-stack skills through structured training and hands-on learning.</li><li>Studying C#, ASP.NET Core MVC, .NET Core Web API, relational databases, and responsive front-end development.</li><li>Learning version control, testing, documentation, and Docker.</li></ul></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="courses">
+      <div class="wrap">
+        <div class="section-intro reveal"><span class="eyebrow">Courses & certificates</span><h2>Courses & certificates</h2></div>
+        <div class="education-grid">
+          <article class="edu-card wide reveal">
+            <div class="card-label">Additional training & self-study</div><h3>Courses and independent learning</h3>
+            <div class="timeline" style="margin-top:24px">
+              <div class="timeline-item"><div class="meta"><span>JUL–AUG 2025</span><span class="muted">ITI</span></div><h3>Introduction to Web Development</h3><p>Training in HTML, CSS, JavaScript, and Bootstrap, including a crochet website project.</p></div>
+              <div class="timeline-item"><div class="meta"><span>AUG 2025</span><span class="muted">MAHARA TECH</span></div><h3>Database Fundamentals</h3></div>
+              <div class="timeline-item"><div class="meta"><span>AUG 2025</span><span class="muted">COMMONWEALTH BANK</span></div><h3>Introduction to Software Engineering — Virtual Experience</h3></div>
+              <div class="timeline-item"><div class="meta"><span>JUL–AUG 2026</span><span class="muted">QNB</span></div><h3>IT Internship Program</h3></div>
+              <div class="timeline-item"><div class="meta"><span>2026</span><span class="muted">FREECODECAMP · SELF-STUDY</span></div><h3>C# Programming, PHP Programming, and SQL</h3></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="wrap">
+        <div class="section-intro reveal"><span class="eyebrow">Skills</span><h2>Skills</h2></div>
+        <div class="skill-group reveal"><h3 class="skill-group-title">Technical Skills</h3><div class="skills-grid">
+          <article class="skill-card"><div class="skill-icon">&lt;/&gt;</div><h3>Coding Languages</h3><div class="skill-tags"><span>C#</span><span>JavaScript</span><span>SQL</span><span>HTML5</span><span>CSS3</span></div></article>
+          <article class="skill-card"><div class="skill-icon">API</div><h3>Frameworks & APIs</h3><div class="skill-tags"><span>ASP.NET Core MVC</span><span>.NET Core Web API</span><span>Bootstrap</span></div></article>
+          <article class="skill-card"><div class="skill-icon">DB</div><h3>Databases</h3><div class="skill-tags"><span>SQL Server</span><span>MySQL</span><span>Relational concepts</span></div></article>
+          <article class="skill-card"><div class="skill-icon">⌘</div><h3>Tools & Design</h3><div class="skill-tags"><span>Git</span><span>GitHub</span><span>Docker</span><span>Visual Studio</span><span>Figma</span><span>Canva</span></div></article>
+        </div></div>
+        <div class="skill-group reveal"><h3 class="skill-group-title">Soft Skills</h3><div class="skills-grid skills-grid-soft">
+          <article class="skill-card"><div class="skill-icon">↗</div><h3>Ways of Working</h3><div class="skill-tags"><span>Problem-solving</span><span>Teamwork</span><span>Communication</span><span>Time management</span><span>Adaptability</span><span>Attention to detail</span><span>Creativity</span></div></article>
+          <article class="skill-card"><div class="skill-icon">Aa</div><h3>Spoken Languages</h3><div class="skill-tags"><span>Arabic — Native</span><span>English — Bilingual</span><span>French — Beginner</span><span>Korean — Beginner</span></div></article>
+        </div></div>
+      </div>
+    </section>
+
+    
+<section class="section" id="projects">
+      <div class="wrap">
+        <div class="section-intro reveal"><span class="eyebrow">Selected practice</span><h2>Projects & experiments</h2><p>A selection of projects where I've practiced interface development, application logic, and core programming concepts.</p></div>
+        <div class="projects-grid">
+          <article class="project-card reveal">
+            <div class="project-visual"><div class="music-ui"><div class="music-album">♫</div><div class="music-name">Now Playing</div><div class="music-sub">Music Player UI concept</div><div class="music-progress"></div><div style="display:flex;justify-content:space-between;color:#8395ad;font: .55rem 'DM Mono',monospace"><span>1:24</span><span>3:40</span></div><div class="music-controls"><span>↶</span><b>▶</b><span>↷</span></div></div></div>
+            <div class="project-content"><div class="project-top"><h3>Music Player Website</h3><span class="project-index">01 / 03</span></div><p>A responsive browser-based music player with playback controls and progress interaction.</p><div class="tech-row"><span>HTML</span><span>CSS</span><span>JavaScript</span></div><p><strong style="color:#e9ddff;font-size:.82rem">Focus:</strong> DOM manipulation, interactive controls, and responsive front-end layout.</p><a class="project-link" href="https://github.com/JanaYasser03" target="_blank" rel="noopener noreferrer">GitHub link↗</a></div>
+          </article>
+          <article class="project-card reveal">
+            <div class="project-visual"><div class="console-window"><div class="console-top">StudentManagementSystem.exe</div><div class="console-text"><span class="green">STUDENT MANAGEMENT SYSTEM</span><br>1. Add student<br>2. View students<br>3. Update student<br>4. Delete student<br><span class="gold">Select an option: _</span></div></div></div>
+            <div class="project-content"><div class="project-top"><h3>Student Management System</h3><span class="project-index">02 / 03</span></div><p>A C# console application for creating, viewing, updating, and deleting student records.</p><div class="tech-row"><span>C#</span><span>Console app</span><span>CRUD</span></div><p><strong style="color:#e9ddff;font-size:.82rem">Focus:</strong> Classes, inheritance, encapsulation, and basic record management.</p><a class="project-link" href="https://github.com/JanaYasser03" target="_blank" rel="noopener noreferrer">GitHub link↗</a></div>
+          </article>
+          <article class="project-card reveal">
+            <div class="project-visual"><div class="console-window"><div class="console-top">BankManagementSystem.exe</div><div class="console-text"><span class="green">BANK MANAGEMENT SYSTEM</span><br>Account: <span class="gold">•••• 2048</span><br>1. Check balance<br>2. Deposit funds<br>3. Withdraw funds<br><span class="green">Input validation enabled</span></div></div></div>
+            <div class="project-content"><div class="project-top"><h3>Bank Management System</h3><span class="project-index">03 / 03</span></div><p>A C# console application for account creation, deposits, withdrawals, and balance checking.</p><div class="tech-row"><span>C#</span><span>Console app</span><span>Validation</span></div><p><strong style="color:#e9ddff;font-size:.82rem">Focus:</strong> Conditional logic, input validation, and handling invalid transactions.</p><a class="project-link" href="https://github.com/JanaYasser03" target="_blank" rel="noopener noreferrer">GitHub link↗</a></div>
+          </article>
+        </div>
+        <p class="project-note" style="margin-top:22px">Project visuals are illustrative mockups for presentation. Replace them with screenshots of the actual projects when available.</p>
+      </div>
+    </section>
+
+
+    <section class="section" id="contact">
+      <div class="wrap">
+        <div class="contact-panel reveal">
+          <div>
+            <span class="eyebrow">Start a conversation</span>
+            <h2>Have an idea?<br><span class="accent">Let's explore what we can build.</span></h2>
+            <p>I'm always looking to learn, collaborate, and put my skills into practice. If you have a project idea or an opportunity that fits my current experience, I'd love to hear from you.</p>
+            <div class="contact-list">
+              <a class="contact-item" href="mailto:jennayasser2005@gmail.com"><span class="contact-icon">@</span><span>jennayasser2005@gmail.com</span></a>
+              <a class="contact-item" href="https://www.linkedin.com/in/jana-yasser-21-software-engineer/?isSelfProfile=true" target="_blank" rel="noopener noreferrer"><span class="contact-icon">in</span><span>LinkedIn</span></a>
+              <a class="contact-item" href="https://github.com/JanaYasser03" target="_blank" rel="noopener noreferrer"><span class="contact-icon">GH</span><span>GitHub</span></a>
+              <div class="contact-item"><span class="contact-icon">⌖</span><span>Cairo, Egypt</span></div>
+            </div>
+          </div>
+          <form class="contact-form" id="contactForm">
+            <div class="field"><label for="name">Your name</label><input id="name" name="name" placeholder="Name" required></div>
+            <div class="field"><label for="email">Your email</label><input id="email" name="email" type="email" placeholder="you@example.com" required></div>
+            <div class="field"><label for="subject">Subject</label><input id="subject" name="subject" placeholder="What would you like to discuss?" required></div>
+            <div class="field"><label for="message">Message</label><textarea id="message" name="message" placeholder="Tell me a little about your idea..." required></textarea></div>
+            <button class="btn btn-primary" type="submit">Prepare email <span aria-hidden="true">↗</span></button>
+            <p class="form-note" id="formNote">This form opens your email app with a prepared message. Add your real email address in the code before publishing.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner"><span>© <span id="year"></span> Jana Yasser. Built with curiosity and care.</span><a class="back-top" href="#home">Back to top ↑</a></div>
+  </footer>
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.textContent = isOpen ? 'Close ×' : 'Menu ☰';
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.textContent = 'Menu ☰';
+    }));
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const revealItems = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealItems.forEach(item => observer.observe(item));
+    } else {
+      revealItems.forEach(item => item.classList.add('visible'));
+    }
+
+    document.getElementById('contactForm').addEventListener('submit', event => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const emailTo = 'jennayasser2005@gmail.com';
+      const data = new FormData(form);
+      const subject = encodeURIComponent(data.get('subject'));
+      const body = encodeURIComponent(`Hi Jana,\n\n${data.get('message')}\n\nFrom: ${data.get('name')} (${data.get('email')})`);
+      window.location.href = `mailto:${emailTo}?subject=${subject}&body=${body}`;
+    });
+  </script>
+</body>
+</html>
