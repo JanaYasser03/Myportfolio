@@ -1,6 +1,6 @@
 # Jana Yasser — Personal Portfolio
 
-Welcome to my personal portfolio! 👋
+Welcome to my personal portfolio 👋
 
 I'm a **Business Information Systems student** passionate about software development and building practical, user-friendly applications. This repository contains the source code for my personal portfolio website, where I showcase my skills, projects, and journey as a developer.
 
